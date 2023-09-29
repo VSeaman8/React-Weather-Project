@@ -17,13 +17,13 @@ export default function Weather(props) {
     console.log(response.data);
     setWeatherData({
       ready: true,
-      temperature: response.daily[0].temperature.day,
-      description: response.daily[0].condition.description,
-      humidity: response.daily[0].temperature.humidity,
-      wind: response.daily[0].wind,
+      temperature: response.daily.temperature.day,
+      description: response.daily.condition.description,
+      humidity: response.daily.temperature.humidity,
+      wind: response.daily.wind.speed,
       city: response.city,
-      icon: response.daily[0].condition.icon_url,
-      date: new Date(response.daily[0].time * 1000),
+      icon: response.daily.condition.icon,
+      date: new Date(response.daily.time * 1000),
     });
 
     function handleSubmit(event) {
@@ -58,7 +58,7 @@ export default function Weather(props) {
               </div>
             </div>
           </form>
-          <WeatherInfo info={WeatherData} />
+          <WeatherInfo info={weatherData} />
         </div>
       );
     } else {
