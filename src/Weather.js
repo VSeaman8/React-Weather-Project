@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
@@ -15,7 +15,7 @@ export default function Weather() {
       wind: response.daily[0].wind,
       query: response.city,
       icon: response.daily[0].condition.icon_url,
-      date: "Wednesday 10th October",
+      date: new Date(response.daily[0].time * 1000),
     });
   }
 
@@ -73,8 +73,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "ce2oeab4ba6tb6eca22df349f6a0bf31";
-    let query = "London";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${query}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.defaultCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "loading...";
