@@ -1,1 +1,1 @@
-A simple dictionary created with React as part of the SheCodes Curriculum
+A simple weather app created with React as part of the SheCodes Curriculum
